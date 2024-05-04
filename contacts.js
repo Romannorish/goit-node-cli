@@ -9,7 +9,6 @@ const contactsPath = path.resolve("db", "contacts.json")
 console.log(contactsPath)
 
 
-
 async function listContacts() {
     // ...твій код. Повертає масив контактів.
 const data = await fs.readFile(contactsPath, {encoding: "utf-8"})
@@ -19,7 +18,7 @@ console.log(data)
 return data
 
   }
-  listContacts()
+  
   async function writeContacts(contactId) {
     // ...твій код. Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
     await fs.writeFile(contactsPath, JSON.stringify(contactId , undefined, 2))
@@ -37,10 +36,20 @@ return data
     return contact
   }
 
-
   async function removeContact(contactId) {
     // ...твій код. Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.
-  }
+    const contacts = await listContacts();
+
+  const index = contacts.findIndex((contact) => contact.id === contactId);
+
+  if (index === -1) {
+    return null;
+  } 
+
+  await writeContacts(contacts)
+
+  return contacts
+}
   
   async function addContact(name, email, phone) {
     // ...твій код. Повертає об'єкт доданого контакту (з id).
@@ -62,7 +71,7 @@ return data
   }
 
 
-  export default {
+  export {
     listContacts,
     writeContacts,
     getContactById,
