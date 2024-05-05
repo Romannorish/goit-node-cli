@@ -46,10 +46,14 @@ return data
     return null;
   } 
 
+  const deleteContact = contacts[index]
+  contacts.splice(index, 1);
+
   await writeContacts(contacts)
 
-  return contacts
+ return deleteContact
 }
+
   
   async function addContact(name, email, phone) {
     // ...твій код. Повертає об'єкт доданого контакту (з id).
@@ -70,10 +74,8 @@ return data
     return newContact
   }
 
-
-  export {
+  export default {
     listContacts,
-    writeContacts,
     getContactById,
     removeContact,
     addContact,
