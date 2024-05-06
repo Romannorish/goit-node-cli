@@ -5,17 +5,12 @@ import path from "node:path"
 
 
 const contactsPath = path.resolve("db", "contacts.json")
- 
-console.log(contactsPath)
-
 
 async function readContacts() {
     // ...твій код. Повертає масив контактів.
 const data = await fs.readFile(contactsPath, {encoding: "utf-8"})
-.then((data) => JSON.parse(data))
-.catch((err) => console.error(err));
-console.table(data)
-return data
+
+return JSON.parse(data)
 
   }
   
@@ -52,7 +47,7 @@ return data
     return null;
   } 
 
-  const deleteContact = contacts[index]
+  const deleteContact = contacts[index];
   contacts.splice(index, 1);
 
   await writeContacts(contacts)
