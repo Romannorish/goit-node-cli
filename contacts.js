@@ -14,14 +14,14 @@ async function readContacts() {
 const data = await fs.readFile(contactsPath, {encoding: "utf-8"})
 .then((data) => JSON.parse(data))
 .catch((err) => console.error(err));
-console.log(data)
+console.table(data)
 return data
 
   }
   
-  async function writeContacts(contactId) {
+  async function writeContacts(contacts) {
     // ...твій код. Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
-    await fs.writeFile(contactsPath, JSON.stringify(contactId , undefined, 2))
+    await fs.writeFile(contactsPath, JSON.stringify(contacts , undefined, 2))
   }
 
   async function listContacts() {
